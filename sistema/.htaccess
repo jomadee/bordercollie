@@ -7,7 +7,5 @@ RewriteEngine on
 RewriteCond %{REQUEST_URI} ^/
 RewriteRule ^$ boot.php [NC]
 
-#RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d
-
-RewriteRule !\.(js|ico|txt|gif|jpg|png|css|htaccess)$ boot.php [NC]
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css|pdf|htaccess|svg|otf|eot|ttf|woff|woff2)$ boot.php [NC]
