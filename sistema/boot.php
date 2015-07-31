@@ -173,54 +173,7 @@ if(in_array($_ll['operation_type'], $_ll['operation_types']) && $_ll['operation_
 }
 
 
-///** Se operation_load ainda no foi definido e exixte uma requisicao */
-//if (!isset($_ll['operation_load']) && ($_ll['operation_load'] = array_shift($arrURL)) !== null){
 //	
-//	/** SE operation_type ja foi definido */	
-//	if($_ll['operation_type'] == false){
-//		
-//		/** Verifica o tipo da requisição [OPT, API, APP] */
-//		foreach(array('opt', 'api', 'app') as $opt){
-//			if(is_dir(BASE_PATH. '/'. $opt. '/'. $_ll['operation_load'])){
-//				$_ll['operation_type'] = $opt;
-//				break;
-//			}
-//		}
-//		
-//		/** Caso não emcontre mostra um erro */
-//		if(!$_ll['operation_type'])
-//			throw new Exception('O operation_load é inexistente.');
-//	
-//	/** SE nao existir o arquivo requirido exibe um erro */
-//	}elseif(!is_dir(BASE_PATH. '/'. $_ll['operation_type']. '/'. $_ll['operation_load']))
-//		throw new Exception('O operation_load é inexistente.');
-//	
-//	
-///** Se operation_load ja foi definido */
-//}else{
-//	
-//	/** Valida se operation_type não é APP, API ou OPT */
-//	if(!in_array($_ll['operation_type'], array('app', 'api', 'opt')))
-//		/** Se nao for define OPT */
-//		$_ll['operation_type'] = 'opt';
-//	
-//	/** Se operation_load for vasio */
-//	if(empty($_ll['operation_load'])){
-//		/** Define a requisiçõe default login do sistema */
-//		$_ll['operation_type'] = $_ll['default']['home']['operation_type'];
-//		$_ll['operation_load'] = $_ll['default']['home']['operation_load'];
-//		
-//		/** Caso seja para uma requisicao nli */
-//		if($_ll['enter_mode'] == 'nli'){
-//			/** Define a requisiçõe default logoff do sistema */
-//			$_ll['operation_type'] = $_ll['default']['login']['operation_type'];
-//			$_ll['operation_load'] = $_ll['default']['login']['operation_load'];
-//		}
-//	}
-//}
-
-
-
 /** Verifica a existemcia do arquivo de emtrada da requisição */
 if(!file_exists(($r = BASE_PATH. '/'. $_ll['operation_type']. '/'. $_ll['operation_load']. '/'. ($_ll['operation_mode']). (!$_ll['terminal']? '.php': '.tmn')))){
 	/** se nao existir mostra um erro */
