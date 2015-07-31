@@ -18,7 +18,7 @@ Explicações
 .tnm são arquivos que interagem com o terminal
 		----------------------------------------------------
 
-*->		*+ usr
+    *->	*+ usr
 			= tema
 				= lliure
 					- icone
@@ -65,12 +65,12 @@ Explicações
 				| ll.php
 				| token.php
 				| bd.php
-|-> 			| jf.fnc.php
+    |-> 		| jf.fnc.php
 				| terminal.php // le arquivos .ll 	
 				
 		*= opt
 			+ stripanelo // painel de controle
-*->				| stripanelo.ll
+    *->			| stripanelo.ll
 				o instalilo
 				- img
 					| install.ico.png
@@ -87,7 +87,7 @@ Explicações
 				| ajax.novo_usuario.php
 				| usuario.header.php
 				| usuarios.php
-|->			| loguser.php
+    |->		| loguser.php
 
 			+ login	
 				login.php 			
@@ -95,9 +95,9 @@ Explicações
 					| start.php
 					| onserver.php
 					| onclient.php
-|->			| rotinas.php
+    |->		| rotinas.php
 			
-*->			+ instalador
+    *->		+ instalador
 				
 		*= app
 			//app's
@@ -106,7 +106,7 @@ Explicações
 				- listiser.php		//trabalhará usando outputbuffer não tendo a necessidade do arquivo 
 				- listiser.os.php
 				- listiser.oc.php	// para trabalho em ajax
-*				- listiser.ll.php	// informações para rodar no lliure (terminal)
+    *			- listiser.ll.php	// informações para rodar no lliure (terminal)
 				- listiser.tmn.php
 				- nli
 					| start.php
@@ -126,14 +126,14 @@ Explicações
 		*+ etc
 			//configs
 			
-*->		*| boot.php
+    *->	*| boot.php
 		*| .htaccess
-|->		*| acoes.php
-|->		*| index.php
-|->		*| kun_html.php
-|->		*| nli.php
-|->		*| onserver.php
-|->		*| sen_html.php
+    |->	*| acoes.php
+    |->	*| index.php
+    |->	*| kun_html.php
+    |->	*| nli.php
+    |->	*| onserver.php
+    |->	*| sen_html.php
 
 -----------------------------------------
 	
