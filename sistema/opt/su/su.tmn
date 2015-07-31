@@ -1,0 +1,56 @@
+<?php
+
+class su_tmn{
+	
+	static public function __callStatic($name, $dados){
+		return self::login($dados);
+	}
+	
+	static public function create($dados){
+		
+		if(!isset($dados['login']))
+			return array('read' => 'digite um login > ', 'prefixo' => 'su create login=');
+		
+		if(!isset($dados['senha']))
+			return array('read' => 'digite uma senha > ', 'prefixo' => 'su create login="'. $dados['login']. '" senha=');
+		
+		$su = new su();
+		$id = $su->create($dados['login'], $dados['senha']);
+		
+		return 'Ususaria criado com id:'. $id;
+		
+	}
+	
+	static public function login($dados){
+		//return print_r($dados, true);
+		
+		if(isset($dados['login']))
+			$login = $dados['login'];
+		
+		elseif (isset($dados['user']))
+			$login = $dados['user'];
+		
+		elseif (isset($dados[0]))
+			$login = $dados[0];
+		
+		else
+			return terminal::read('digite um login > ', 'su login login=');
+		
+		if(isset($dados['senha']))
+			$senha = $dados['senha'];
+		
+		else
+			return terminal::password('digite uma senha > ', 'su login login="'. $login. '" senha=');
+		
+		$su = new su();
+		$su->login($su->exist($login, $senha));
+		
+		return self::user($dados);
+	}
+	
+	public static function user($dados){
+		global $_ll;
+		return array('user' => (isset($_ll['user'])? $_ll['user']: FALSE));
+	}
+	
+}

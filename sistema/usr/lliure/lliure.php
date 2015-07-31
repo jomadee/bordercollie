@@ -1,5 +1,5 @@
-﻿<?php
-class ll{
+<?php
+class lliure{
 	/*********************************************	Methodos para tratamento de login **********/
 	private static $user = false;
 	//private static $login = false;
@@ -21,16 +21,9 @@ class ll{
 		return self::$user;
 	}
 	
-	public static function terminal(){
-		require_once('usr/terminal/terminal.php');		
-	}
-	
-	public static function explorador(){
-		
-
-			// por ultimo puxa o tema
+	public static function terminal($cmd){
+		terminal::execute($cmd);
 	}
 	
 	/*******************************************************************************************/
 }
-?>

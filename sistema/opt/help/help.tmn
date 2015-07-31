@@ -1,0 +1,12 @@
+<?php
+
+class help_tmn {
+    public static function __callStatic($name , $arguments){
+		terminal::load($name);
+		$r = '┬'. $name;
+		foreach (($f = get_class_methods($name.'_tmn')) as $key => $value) {
+			$r .= "\n". (count($f) == ($key + 1)? '└': '├'). '─' .$value;
+		}
+		return $r;
+    }
+}

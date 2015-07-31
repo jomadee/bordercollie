@@ -1,0 +1,33 @@
+* {
+	padding: 0;
+	margin: 0;
+	font-size: inherit;
+	color: inherit;
+    -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background-color: transparent;
+	outline: none;
+}
+
+html, body{
+	height: 100%;
+	display: block;
+	background: #000;
+	color: #fff;
+	font-family: monospace;
+	font-size: 14px;
+}
+	
+#terminal{
+	width: 100%;
+	min-width: 695px;
+}
+
+span{
+    min-width: 1em;
+}
+
+span.password{
+	color: transparent;
+}

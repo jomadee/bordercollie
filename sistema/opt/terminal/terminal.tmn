@@ -1,0 +1,23 @@
+<?php
+
+class terminal_tmn{
+
+	static public function server(){
+		return print_r($_SERVER, TRUE);
+	}
+
+	static public function _ll(){
+		global $_ll;
+		return print_r($_ll, TRUE);
+	}
+	
+	static public function session($dados){
+		if(isset($dados[0]) && $dados[0] == 'clear'){
+			$_SESSION = array();
+			return '$_SESSION foi limpo';
+		}
+		
+		return print_r($_SESSION, TRUE);
+	}
+	
+}
