@@ -1,0 +1,13 @@
+#ErrorDocument 404 /404.php 
+
+Options -Indexes
+
+RewriteEngine on 
+
+RewriteCond %{REQUEST_URI} ^/
+RewriteRule ^$ boot.php [NC]
+
+#RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{SCRIPT_FILENAME} !-d
+
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css|htaccess)$ boot.php [NC]

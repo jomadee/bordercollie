@@ -1,0 +1,1 @@
+﻿aplicativo não acessivel
