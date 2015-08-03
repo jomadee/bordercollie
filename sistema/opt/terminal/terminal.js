@@ -43,6 +43,7 @@ ll.terminal.core.obj = function(data, callback){
 //	};
 
 	ll.terminal.ex('password', function(data){
+		ll.terminal.prefixo = data.prefixo? data.prefixo: '';
 		resposta.remove();
 		nextline(data.password, true);
 	});

@@ -1,12 +1,15 @@
 <?php
 
 class help_tmn {
-    public static function __callStatic($name , $arguments){
-		terminal::load($name);
-		$r = '┬'. $name;
-		foreach (($f = get_class_methods($name.'_tmn')) as $key => $value) {
-			$r .= "\n". (count($f) == ($key + 1)? '└': '├'). '─' .$value;
+    public static function help($dados){
+		if (isset($dados[0])){
+			terminal::load($dados[0]);
+			$r = '┬' . $dados[0];
+			foreach (($f = get_class_methods($dados[0] . '_tmn')) as $key => $value) {
+				$r .= "\n" . (count($f) == ($key + 1) ? '└' : '├') . '─' . $value;
+			}
+			return $r;
 		}
-		return $r;
+		return 'Digite um metodo para ser procesado.';
     }
 }

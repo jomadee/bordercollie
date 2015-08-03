@@ -23,8 +23,10 @@ class terminal{
 			
 			case "array":
 				$k = array_keys($r);
-				if(isset($k[0]) && $k[0] == 'acrion')
+				if(isset($k[0]) && $k[0] == 'action') {
+					$r = $r['action'];
 					break;
+				}
 				
 			case "object":
 				$r = array('object' => $r);
@@ -81,6 +83,8 @@ class terminal{
         self::load($mode, $type);
 		
         $keys = array_keys($cmd);
+
+		//return '$mode = '. $mode. ' $type = '. ($type? 'true': 'false');
 
 		if(isset($keys[0]) && $keys[0] == 0 && method_exists($mode.'_tmn', $cmd[0]))
 			$func = array_shift($cmd);
@@ -150,10 +154,10 @@ class terminal{
 	}
 	
 	public static function read($text, $return = ''){
-		return self::action(array('texto' => $text, 'prefixo' => $return));
+		return self::action(array('read' => $text, 'prefixo' => $return));
 	}
 	
-	public static function paassword($text, $return = ''){
+	public static function password($text, $return = ''){
 		return  self::action(array('password' => $text, 'prefixo' => $return));
 	}
 	

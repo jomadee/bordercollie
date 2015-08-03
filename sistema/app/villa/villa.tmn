@@ -5,11 +5,12 @@ class villa_tmn{
     static public function villa(){
 
         $teste2 = array(
-            array(
-                'o asd i' => 'teste',
-                'boi' => 'teste2',
-                '' => 'teste3'
-            )
+            'teste 1',
+            'teste 2',
+            'teste',
+            'teste4',
+            10 => 'oi',
+            1
         );
 
         return print_r($teste2, true). "\n". ($teste2 = ShortTag::Implode($teste2)). "\n". print_r(ShortTag::Explode($teste2), true);
