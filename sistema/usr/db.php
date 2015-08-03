@@ -94,10 +94,10 @@ class db {
 				throw new Exception('Falha de conexão: ' . $e->getMessage(), 1);
 			}
 		}else{
-			if((self::$DB = @mysql_connect($hostname_conexao, $username_conexao, $password_conexao)) === FALSE)
+			if((self::$DB = @mysql_connect($bdconf['hostName'], $bdconf['userName'], $bdconf['password'])) === FALSE)
 				throw new Exception('<strong>Não foi possivel realizar a conexão com banco de dados</strong><br>verifique as configurações do arquivo bdconf.php em /etc', 1);
 			
-			mysql_select_db($banco_conexao, self::$DB);
+			mysql_select_db($bdconf['tableName'], self::$DB);
 			self::$type = self::MYSQL;
 			return self::$DB;
 		}

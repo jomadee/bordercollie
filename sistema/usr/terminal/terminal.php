@@ -2,9 +2,6 @@
 
 class terminal{
 
-    /** @var bool garda se este comando e via terminal ou script */
-    static $pronpt = false;
-
 	public static function start($cmd){
 		
 		try{
@@ -65,20 +62,14 @@ class terminal{
 
             case 1:
                 $type = $keys[0];
-                $mode = $cmd[$keys[0]];
-                array_shift($cmd);
+                $mode = array_shift($cmd);
                 break;
 
             case 2:
-                $type = $cmd[0];
-                $mode = $cmd[1];
-                array_shift($cmd);
-                array_shift($cmd);
-                break;
+                $type = array_shift($cmd);
 
             case 3:
-                $mode = $cmd[0];
-                array_shift($cmd);
+				$mode = array_shift($cmd);
                 break;
 
             default:
@@ -86,17 +77,12 @@ class terminal{
                 break;
 
         }
-		
-		//return '$mode = '. $mode. ' $type = '. ($type? 'true': 'false');
 
         self::load($mode, $type);
 		
         $keys = array_keys($cmd);
-		
-		//return print_r($cmd, true);
-		//return $mode. ' '. (method_exists($mode, 'callStatic')? 'true': 'false');
 
-		if(isset($keys[0]) && $keys[0] === 0 && method_exists($mode.'_tmn', $cmd[0]))
+		if(isset($keys[0]) && $keys[0] == 0 && method_exists($mode.'_tmn', $cmd[0]))
 			$func = array_shift($cmd);
 		
         elseif(method_exists($mode.'_tmn', $mode))
@@ -120,10 +106,10 @@ class terminal{
 		$type = 0;
         $keys = array_keys($cmd);
 
-        if(isset($keys[0]) && is_string($keys[0]) && in_array($keys[0], $_ll['operation_types']))
+        if(isset($keys[0]) && in_array($keys[0], $_ll['operation_types']))
             $type = 1;
 
-        elseif(isset($cmd[0]) && is_string($cmd[0]) && in_array($cmd[0], $_ll['operation_types']) && isset($cmd[1]) && is_string($cmd[1]))
+        elseif(isset($cmd[0]) && in_array($cmd[0], $_ll['operation_types']) && isset($cmd[1]) && is_string($cmd[1]))
             $type = 2;
 
         elseif(isset($cmd[0]) && is_string($cmd[0]))

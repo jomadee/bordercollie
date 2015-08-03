@@ -15,7 +15,6 @@ class ShortTag{
 
             $vasia = (strlen($value) <= 0);
             $value = ((isset($value[0]) && ($value[0] == '"' || $value[0] == "'"))? substr($value, 1, -1): $value);
-            //$value = trim($value, '"\'');
 
             switch($parts[2][$key]) {
 
@@ -81,14 +80,21 @@ class ShortTag{
 
             if(is_string($index)){
                 $index = (strpos($index, ' ') || strlen($index) == 0?  '"'. $index. '"' : $index);
-            }
 
-            if (is_numeric($index)){
-                if ($i == $index) {
+            }elseif(is_numeric($index)){
+                if(is_array($value)) {
+                    $index = (string)$index;
+
+                }elseif ($i == $index){
                     $index = '';
+                    $i++;
 
-                } else {
+                }elseif($i < $index){
                     $i = $index;
+                    $i++;
+                    $index = (string) $index;
+
+                }else{
                     $index = (string) $index;
 
                 }
@@ -105,8 +111,6 @@ class ShortTag{
                 $b[] = $base. $index. (strlen($base. $index) > 0? '=': ''). $value;
 
             }
-
-            $i++;
 
         }
 

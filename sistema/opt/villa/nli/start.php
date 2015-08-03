@@ -1,1 +1,0 @@
-﻿diga olá ao NLI

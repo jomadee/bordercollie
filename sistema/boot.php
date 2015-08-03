@@ -29,7 +29,7 @@ unset($file, $bptw, $qyst, $rdtu, $bsgt);
 
 
 /** Carregando e configunado o Autoload */
-require_once BASE_PATH. DS. 'usr'. DS. 'autoload'. DS. 'autoload.php';
+require_once BASE_PATH. DS. 'usr'. DS. 'autoload.php';
 autoload::setPath(BASE_PATH. DS. 'usr');
 autoload::setPath(BASE_PATH. DS. 'api');
 autoload::setPath(BASE_PATH. DS. 'app');
