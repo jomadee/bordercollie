@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt_br" lang="pt_br">
 	<head>
+		<base href="<?php echo $_ll['url']['home'];?>">
 		<title>lliure Terminal</title>
 		<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
 		<link href="opt/terminal/terminal.css" rel="stylesheet"/>

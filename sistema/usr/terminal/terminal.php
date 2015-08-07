@@ -51,10 +51,15 @@ class terminal{
     
     final static function execute($cmd){
 
+		if(!(is_string($cmd) || is_array($cmd)))
+			throw new Exception('ERROR: comando passado ao termanima tem de ser uma string ou um array');
+
         $type = false;
 		$func = NULL;
 
-        $cmd = ShortTag::Explode($cmd);
+		if(is_string($cmd))
+        	$cmd = ShortTag::Explode($cmd);
+
         $keys = array_keys($cmd);
 
         //return print_r($cmd, true);

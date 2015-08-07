@@ -14,7 +14,7 @@ class ShortTag{
         foreach($parts[1] as $key => $value){
 
             $vasia = (strlen($value) <= 0);
-            $value = ((isset($value[0]) && ($value[0] == '"' || $value[0] == "'"))? str_replace('\\"', '"', substr($value, 1, -1)): $value);
+            $value = ((isset($value[0]) && ($value[0] == '"' || $value[0] == "'"))? str_replace(array('\\"', '\\\\'), array('"', '\\'), substr($value, 1, -1)): $value);
 
             switch($parts[2][$key]) {
 
@@ -61,9 +61,6 @@ class ShortTag{
 
         };
 
-        //throw new Exception(print_r($parts, true));
-        //throw new Exception(print_r($array, true));
-
         return $array;
 
     }
@@ -73,7 +70,7 @@ class ShortTag{
         return self::IR($array);
     }
 
-    private static final function IR(array $array, $base = null){
+    private static final function IR(array $array, $base = ''){
 
         $i =       0;
         $b = array();
@@ -81,7 +78,7 @@ class ShortTag{
         foreach($array as $index => $value){
 
             if(is_string($index)){
-                $index = (strpos($index, ' ') || strlen($index) == 0?  '"'. str_replace('"', '\\"', $index). '"' : $index);
+                $index = ((strpos($index, ' ') !== false || strpos($index, '"') !== false || strlen($index) == 0)?  '"'. str_replace(array('\\', '"'), array('\\\\', '\\"'), $index). '"' : $index);
 
             }elseif(is_numeric($index)){
                 if(is_array($value)) {
@@ -108,8 +105,7 @@ class ShortTag{
             }else{
 
                 $value = (string) $value;
-                $value = (strpos($value, ' ')?  '"'. $value. '"' : $value);
-
+                $value = ((strpos($value, ' ') !== false || strpos($value, '"') !== false)?  '"'. str_replace(array('\\', '"'), array('\\\\', '\\"'), $value). '"' : $value);
                 $b[] = $base. $index. (strlen($base. $index) > 0? '=': ''). $value;
 
             }

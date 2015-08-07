@@ -80,9 +80,9 @@ if(($chave = array_search('nli', $arrURL)) !== false || !lliure::get_login()){
 if($_ll['terminal']){
 	
 	/** Se existri um comando */
-	if(isset($_GET['cmd'])){
+	if(!empty($_GET)){
 		/** Executa o terminal */
-		terminal::start($_GET['cmd']); die();
+		terminal::start(((isset($_GET['cmd']))? $_GET['cmd']: $_GET)); die();
 	
 	/** se nao existir um comando */
 	}else{

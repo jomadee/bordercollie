@@ -5,8 +5,8 @@ ll.terminal = function(comando, callback){
 	
 	var self = ll.terminal;
 
-	if(self.prefixo.length > 0)
-		comando = '"' + comando.replace(/"/g, '\\"') +  '"';
+	if(self.prefixo.length > 0 && comando.length > 0)
+		comando = '"' + comando.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
 
 	$.getJSON('terminal', {cmd: self.prefixo + comando}, function(data){
 		self.prefixo = '';
