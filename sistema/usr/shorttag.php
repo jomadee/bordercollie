@@ -14,7 +14,7 @@ class ShortTag{
         foreach($parts[1] as $key => $value){
 
             $vasia = (strlen($value) <= 0);
-            $value = ((isset($value[0]) && ($value[0] == '"' || $value[0] == "'"))? substr($value, 1, -1): $value);
+            $value = ((isset($value[0]) && ($value[0] == '"' || $value[0] == "'"))? str_replace('\\"', '"', substr($value, 1, -1)): $value);
 
             switch($parts[2][$key]) {
 
@@ -52,6 +52,8 @@ class ShortTag{
                             $pont = $value;
                             unset($pont);
                         }
+                    }elseif(isset($pont)){
+                        unset($pont);
                     }
 
                     break;
@@ -79,7 +81,7 @@ class ShortTag{
         foreach($array as $index => $value){
 
             if(is_string($index)){
-                $index = (strpos($index, ' ') || strlen($index) == 0?  '"'. $index. '"' : $index);
+                $index = (strpos($index, ' ') || strlen($index) == 0?  '"'. str_replace('"', '\\"', $index). '"' : $index);
 
             }elseif(is_numeric($index)){
                 if(is_array($value)) {

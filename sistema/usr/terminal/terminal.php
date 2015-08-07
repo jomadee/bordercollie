@@ -85,8 +85,9 @@ class terminal{
         $keys = array_keys($cmd);
 
 		//return '$mode = '. $mode. ' $type = '. ($type? 'true': 'false');
+		//return ('host' == 0?  'true': 'false');
 
-		if(isset($keys[0]) && $keys[0] == 0 && method_exists($mode.'_tmn', $cmd[0]))
+		if(isset($keys[0]) && $keys[0] === 0 && method_exists($mode.'_tmn', $cmd[0]))
 			$func = array_shift($cmd);
 		
         elseif(method_exists($mode.'_tmn', $mode))

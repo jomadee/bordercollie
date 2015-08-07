@@ -1,0 +1,53 @@
+<?php
+
+class instal_tmn{
+
+
+    public static function instal($dados){
+
+        $o = $dados;
+
+        //if(file_exists(BASE_PATH. DS. 'etc/bd.confg.ll'))
+        //   throw new Exception('Sistema já instalado');
+
+        //return ShortTag::Implode(array('teste' => 'teste \"teste\" sfdgsfg'));
+
+        if(!isset($dados['user']))
+            return terminal::read('DB Type    (defalt: mysql)     > ', 'instal type=');
+
+        $dados['host'] = (!empty($dados['host'])? $dados['host']: 'localhost');
+
+        if(!isset($dados['host']))
+            return terminal::read('DB Host    (defalt: localhost) > ', 'instal '. ShortTag::Implode($dados). ' host=');
+
+        foreach($dados as $k => $d)$dados[$k] = str_replace(array('\\', '"'), array('\\\\', '\\"'), $d);
+
+        if(!isset($dados['user']))
+            return terminal::read('DB User    (defalt: root)      > ', 'instal '. ShortTag::Implode($dados). ' user=');
+
+        $dados['user'] = (!empty($dados['user'])? $dados['user']: 'root');
+
+        if(!isset($dados['pass']))
+            return terminal::read('DB Pass    (defalt: )          > ', 'instal '. ShortTag::Implode($dados). ' pass=');
+
+        if (!isset($dados['tabel']))
+            return terminal::read('DB Tabel                       > ', 'instal ' . ShortTag::Implode($dados) . ' tabel=');
+
+        if (isset($dados['tabel']) && empty($dados['tabel'])) {
+            unset($dados['tabel']);
+            return terminal::read("-- ESTE DADO NÃO PODE VASIO\nDB Tabel                       > ", 'instal ' . ShortTag::Implode($dados) . ' tabel=');
+        }
+
+        if(!isset($dados['prefixo']))
+            return terminal::read('DB Prefixo (defalt: '. PREFIXO. ')       > ', 'instal '. ShortTag::Implode($dados). ' prefixo=');
+
+        $dados['prefixo'] = (!empty($dados['prefixo'])? $dados['prefixo']: PREFIXO);
+
+        return print_r($o, true);
+
+        //return Instal::sql(dirname(__FILE__). DS. 'base'. DS. 'db.sql', PREFIXO, $dados['prefixo']);
+
+    }
+
+
+}

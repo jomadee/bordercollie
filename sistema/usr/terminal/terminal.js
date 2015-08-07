@@ -4,7 +4,10 @@ if(typeof ll == 'undefined')
 ll.terminal = function(comando, callback){
 	
 	var self = ll.terminal;
-	
+
+	if(self.prefixo.length > 0)
+		comando = '"' + comando.replace(/"/g, '\\"') +  '"';
+
 	$.getJSON('terminal', {cmd: self.prefixo + comando}, function(data){
 		self.prefixo = '';
 		self.core.before(data);

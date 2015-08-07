@@ -80,7 +80,7 @@ class db {
 		if(self::$DB !== NULL)
 			return self::$DB;
 		
-		if(!file_exists(($file = BASE_PATH. DS. 'etc'. DS. 'bdconfg.ll')))
+		if(!file_exists(($file = BASE_PATH. DS. 'etc'. DS. 'bd.confg.ll')))
 			throw new Exception('Arquivo de configuração de banco de dados não existe.', 0);
 		
 		$bdconf = require $file;
@@ -255,6 +255,18 @@ class db {
         }elseif(self::$type == self::PDO){
             return self::$DB->exec($this->getQueryList());
         }
+    }
+
+    /**
+     * Retorna o ultimo erro ocorido;
+     * @return array
+     */
+    final protected function error(){
+        if (self::$type == self::MYSQL)
+            return array('', mysql_errno(), mysql_error());
+
+        else
+            return self::$DB->errorInfo();
     }
     
     /**

@@ -37,11 +37,6 @@ ll.terminal.core.obj = function(data, callback){
 			responder = data.responder;
 	};
 
-//	ll.terminal.core.password = function(data){
-//		resposta.remove();
-//		nextline(data.password, true);
-//	};
-
 	ll.terminal.ex('password', function(data){
 		ll.terminal.prefixo = data.prefixo? data.prefixo: '';
 		resposta.remove();
@@ -103,7 +98,7 @@ ll.terminal.core.obj = function(data, callback){
 			
 			//console.log(input.html());
 			
-			if(input.html().length > 0){
+			if(ll.terminal.prefixo.length > 0 || input.html().length > 0){
 				
 				isPassword = input.hasClass('password');
 				var cmd = input.html();
