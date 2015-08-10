@@ -10,6 +10,11 @@ class Instal extends db{
         return $this->exec($query) !== false? 'OK': $this->error();
     }
 
+    public static function confgFiles(array $config, array $db){
+        file_put_contents(BASE_PATH. '/etc/confg.ll', '<?php return '. var_export($config, true). ';');
+        file_put_contents(BASE_PATH. '/etc/db.confg.ll', '<?php return '. var_export($db, true). ';');
+    }
+
     public static function sql($file, $prefixo_atual = false, $prefixo_novo = false){
 
         var_dump($prefixo_atual, $prefixo_novo);
@@ -100,7 +105,5 @@ class Instal extends db{
             return preg_replace($pattern, $replacement, $string);
         return $string;
     }
-
-
 
 }

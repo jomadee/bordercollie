@@ -80,7 +80,7 @@ class db {
 		if(self::$DB !== NULL)
 			return self::$DB;
 		
-		if(!file_exists(($file = BASE_PATH. DS. 'etc'. DS. 'bd.confg.ll')))
+		if(!file_exists(($file = BASE_PATH. DS. 'etc'. DS. 'db.confg.ll')))
 			throw new Exception('Arquivo de configuração de banco de dados não existe.', 0);
 		
 		$bdconf = require $file;

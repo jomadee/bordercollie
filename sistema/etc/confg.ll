@@ -1,22 +1,19 @@
-<?php
-
-//default operationType = app
-//default nli = villa
-//logadoDefault = villa
-//
-//$ll->default->operationType = app
-//$ll->default->nli = villa
-//
-//$_ll->default->desktop->operation_type = 'app';
-//$_ll->default->desktop->operation_load = 'villa';
-//$_ll->default->nli->operation_type = 'opt';
-//$_ll->default->nli->operation_load = 'loguser';
-
-define('PREFIXO', 'll_');
-
-$_ll['default']['desktop']['operation_type'] = 'app';
-$_ll['default']['desktop']['operation_load'] = 'villa';
-$_ll['default']['nli']['operation_type'] = 'opt';
-$_ll['default']['nli']['operation_load'] = 'loguser';
-
-return $_ll;
+<?php return array (
+  'defines' => 
+  array (
+    'PREFIXO' => 'll_',
+  ),
+  'default' => 
+  array (
+    'desktop' => 
+    array (
+      'operation_type' => 'app',
+      'operation_load' => 'villa',
+    ),
+    'nli' => 
+    array (
+      'operation_type' => 'opt',
+      'operation_load' => 'loguser',
+    ),
+  ),
+);

@@ -41,7 +41,13 @@ if(!file_exists(($f = BASE_PATH. DS. 'etc'. DS. 'confg.ll')))
 
 
 /** Instacia as configurações definidas no arquivo confg */
-else $_ll = require_once $f;
+else $_ll = array_merge($_ll, (require $f));
+
+
+/** starta todas os difines configurados */
+foreach ($_ll['defines'] as $name => $value)
+	if(!defined($name)) define($name, $value);
+
 
 /** retorna os dados processados/carregados pelo start */
 if((str_replace('/', DS, (trim($_SERVER['DOCUMENT_ROOT'], DS). $_SERVER['SCRIPT_NAME']))) !== (trim(str_replace('/', DS, __FILE__), DS)))

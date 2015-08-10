@@ -2,10 +2,9 @@
 
 class instal_tmn{
 
-
     public static function instal($dados){
 
-        //if(file_exists(BASE_PATH. DS. 'etc/bd.confg.ll'))
+        //if(file_exists(BASE_PATH. DS. 'etc/db.confg.ll'))
         //   throw new Exception('Sistema já instalado');
 
         if(!isset($dados['type']))
@@ -28,14 +27,28 @@ class instal_tmn{
 
         if (isset($dados['table']) && empty($dados['table'])){
             unset($dados['table']);
-            return terminal::read("-- ESTE DADO NÃO PODE VASIO\nDB Table                       > ", 'instal ' . ShortTag::Implode($dados) . ' table=');
+            return terminal::read("-- ESTE DADO NÃO PODE SER VASIO\nDB Table                       > ", 'instal ' . ShortTag::Implode($dados) . ' table=');
         }
 
         if(!isset($dados['prefixo']))
             return terminal::read('DB Prefixo (defalt: '. PREFIXO. ')       > ', 'instal '. ShortTag::Implode($dados). ' prefixo=');
         $dados['prefixo'] = (!empty($dados['prefixo'])? $dados['prefixo']: PREFIXO);
 
-        return print_r($dados, true);
+        //return print_r($dados, true);
+
+        $db = require BASE_PATH. '/opt/instal/base/db.confg.ll';
+        $db['basetype']  = $dados['type'];
+        $db['hostName']  = $dados['host'];
+        $db['userName']  = $dados['user'];
+        $db['password']  = $dados['pass'];
+        $db['tableName'] = $dados['table'];
+
+        $confg = require BASE_PATH. '/etc/confg.ll';
+        $confg['defines']['PREFIXO'] = $dados['prefixo'];
+
+        Instal::confgFiles($confg, $db);
+
+        return print_r($dados, true). print_r($db, true). print_r($confg, true);
 
         //return Instal::sql(dirname(__FILE__). DS. 'base'. DS. 'db.sql', PREFIXO, $dados['prefixo']);
 
