@@ -11,8 +11,8 @@ class Instal extends db{
     }
 
     public static function confgFiles(array $config, array $db){
-        file_put_contents(BASE_PATH. '/etc/confg.ll', '<?php return '. var_export($config, true). ';');
-        file_put_contents(BASE_PATH. '/etc/db.confg.ll', '<?php return '. var_export($db, true). ';');
+        Confgs::putFile(BASE_PATH. '/etc/confg.ll', $config);
+        Confgs::putFile(BASE_PATH. '/etc/db.confg.ll', $db);
     }
 
     public static function sql($file, $prefixo_atual = false, $prefixo_novo = false){
