@@ -1,6 +1,6 @@
 <?php
 
-class autoload{
+class AutoLoad{
     
     static private
 
@@ -79,7 +79,7 @@ class autoload{
 
 function autoloadFunction($nome){
 	try{
-		require_once autoload::getFile($nome);
+		require_once AutoLoad::getFile($nome);
 	}catch(Exception $exc){
 		return NULL;
 	}

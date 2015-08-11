@@ -1,7 +1,7 @@
 <?php 
 
 /** auto load subistituto */
-autoload::setPath(BASE_PATH. DS. 'api'. DS. 'phpmailer');
+AutoLoad::setPath(BASE_PATH. DS. 'api'. DS. 'phpmailer');
 
 /**
  * PHPMailer - PHP email creation and transport class.

@@ -29,10 +29,10 @@ unset($file, $bptw, $qyst, $rdtu, $bsgt);
 
 
 /** Carregando e configunado o Autoload */
-require_once BASE_PATH. DS. 'usr'. DS. 'autoload.php';
-autoload::setPath(BASE_PATH. DS. 'usr');
-autoload::setPath(BASE_PATH. DS. 'api');
-autoload::setPath(BASE_PATH. DS. 'app');
+require_once BASE_PATH. DS. 'usr'. DS. 'AutoLoad.php';
+AutoLoad::setPath(BASE_PATH. DS. 'usr');
+AutoLoad::setPath(BASE_PATH. DS. 'api');
+AutoLoad::setPath(BASE_PATH. DS. 'app');
 
 
 /** Verifica a existemcia do inicialozador (confg.php) */
