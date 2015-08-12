@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Description of su
+ * Description of SU
  */
-class su extends db{
+class SU extends DB{
 	
 	public function __construct(){
 		parent::__construct(PREFIXO . 'lliure_su');
@@ -21,7 +21,7 @@ class su extends db{
 	 * @return int id
 	 */
 	public function create($login, $senha, array $option = array()){
-		$option = parent::antiInjection(array_merge(array('login' => $login, 'senha' => senha::create($senha)), $option));
+		$option = parent::antiInjection(array_merge(array('login' => $login, 'senha' => Senha::create($senha)), $option));
 		parent::insert($option);
 		return parent::insert_id();
 	}
@@ -45,7 +45,7 @@ class su extends db{
 		$q = parent::select('SELECT id, senha FROM '. $this. ' WHERE login="'. $login. '"');
 		if(parent::numRows($q) == 0)
 			throw new Exception('Usuario não existe', 0);
-		$objSenha = new senha();
+		$objSenha = new Senha();
 		if(!$objSenha->valid($senha, $q[0]['senha']))
 			throw new Exception('Senha não coresponde a senha do ususaria', 1);
 		return $q[0]['id'];

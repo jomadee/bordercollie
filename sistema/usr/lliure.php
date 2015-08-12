@@ -22,7 +22,7 @@ class lliure{
 	}
 	
 	public static function terminal($cmd){
-		terminal::execute($cmd);
+		Terminal::execute($cmd);
 	}
 	
 	/*******************************************************************************************/

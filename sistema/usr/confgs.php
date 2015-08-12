@@ -3,7 +3,6 @@
 class Confgs{
 
     public static function putFile($file, array $dados){
-
         $content = var_export($dados, true);
         $content = preg_replace('/\n\s+array/im', 'array', $content);
         $content = preg_replace_callback(
@@ -13,9 +12,13 @@ class Confgs{
             ),
             $content
         );
+        return file_put_contents($file, '<?php return '. $content. ';');
+    }
 
-        file_put_contents($file, '<?php return '. $content. ';');
-
+    public static function getFile($file){
+        if(file_exists($file))
+            return require $file;
+        throw new Exception('Arquivo de configuraçõe não encontrado: '. $file);
     }
 
 }

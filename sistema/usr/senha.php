@@ -3,7 +3,7 @@
 /**
  * Gerencia a criação e validação de senhas do sistema de forma segura.
  */
-class senha{
+class Senha{
 	
 	/**
 	 * Emcripita uma senha de forma segura e unica.

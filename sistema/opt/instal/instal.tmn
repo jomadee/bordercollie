@@ -4,54 +4,50 @@ class instal_tmn{
 
     public static function instal($dados){
 
-        //if(file_exists(BASE_PATH. DS. 'etc/db.confg.ll'))
-        //   throw new Exception('Sistema já instalado');
+        if(!isset($dados['sobe']) && file_exists(BASE_PATH. DS. 'etc/db.confg.ll'))
+            return Terminal::read('Sobrescrever Intalação (S: sim, N: não) > ', 'instal '. ShortTag::Implode($dados). ' sobe=');
+        $dados['sobe'] = (!isset($dados['sobe']) || empty($dados['sobe'])?'n' : $dados['sobe']);
+
+        if(file_exists(BASE_PATH. DS. 'etc/db.confg.ll') && !($dados['sobe'] == 'S' || $dados['sobe'] == 's'))
+            throw new Exception('Sistema já instalado');
 
         if(!isset($dados['type']))
-            return terminal::read('DB Type    (defalt: mysql)     > ', 'instal '. ShortTag::Implode($dados). ' type=');
+            return Terminal::read('DB Type    (defalt: mysql)     > ', 'instal '. ShortTag::Implode($dados). ' type=');
         $dados['type'] = (!empty($dados['type'])? $dados['type']: 'mysql');
 
         if(!isset($dados['host']))
-            return terminal::read('DB Host    (defalt: localhost) > ', 'instal '. ShortTag::Implode($dados). ' host=');
+            return Terminal::read('DB Host    (defalt: localhost) > ', 'instal '. ShortTag::Implode($dados). ' host=');
         $dados['host'] = (!empty($dados['host'])? $dados['host']: 'localhost');
 
         if(!isset($dados['user']))
-            return terminal::read('DB User    (defalt: root)      > ', 'instal '. ShortTag::Implode($dados). ' user=');
+            return Terminal::read('DB User    (defalt: root)      > ', 'instal '. ShortTag::Implode($dados). ' user=');
         $dados['user'] = (!empty($dados['user'])? $dados['user']: 'root');
 
         if(!isset($dados['pass']))
-            return terminal::read('DB Pass    (defalt: )          > ', 'instal '. ShortTag::Implode($dados). ' pass=');
+            return Terminal::password('DB Pass    (defalt: )          > ', 'instal '. ShortTag::Implode($dados). ' pass=');
 
         if (!isset($dados['table']))
-            return terminal::read('DB Table                       > ', 'instal ' . ShortTag::Implode($dados) . ' table=');
+            return Terminal::read('DB Table                       > ', 'instal ' . ShortTag::Implode($dados) . ' table=');
 
         if (isset($dados['table']) && empty($dados['table'])){
             unset($dados['table']);
-            return terminal::read("-- ESTE DADO NÃO PODE SER VASIO\nDB Table                       > ", 'instal ' . ShortTag::Implode($dados) . ' table=');
+            return Terminal::read("-- ESTE DADO NÃO PODE SER VASIO\nDB Table                       > ", 'instal ' . ShortTag::Implode($dados) . ' table=');
         }
 
         if(!isset($dados['prefixo']))
-            return terminal::read('DB Prefixo (defalt: '. PREFIXO. ')       > ', 'instal '. ShortTag::Implode($dados). ' prefixo=');
+            return Terminal::read('DB Prefixo (defalt: '. PREFIXO. ')       > ', 'instal '. ShortTag::Implode($dados). ' prefixo=');
         $dados['prefixo'] = (!empty($dados['prefixo'])? $dados['prefixo']: PREFIXO);
 
-        //return print_r($dados, true);
+        $r  = "\n";
+        $r .= "\n";
+        foreach(Instal::rum($dados) as $cat => $itens) {
+            $r .= '<strong>' . $cat . '</strong>'. "\n";
+            foreach ($itens as $name => $status) {
+                $r .= '-- <strong>' . $name . '</strong> ' . (is_array($status['status'])? '<span style="color: #f00">'.$status['status'][2].'</span>' : '<span style="color: #00ff20">' .$status['status'].'</span>'). "\n";
+            }
+        }
 
-        $db = require BASE_PATH. '/opt/instal/base/db.confg.ll';
-        $db['basetype']  = $dados['type'];
-        $db['hostName']  = $dados['host'];
-        $db['userName']  = $dados['user'];
-        $db['password']  = $dados['pass'];
-        $db['tableName'] = $dados['table'];
-
-        $confg = require BASE_PATH. '/etc/confg.ll';
-        $confg['defines']['PREFIXO'] = $dados['prefixo'];
-
-        Instal::confgFiles($confg, $db);
-
-        return print_r($dados, true). print_r($db, true). print_r($confg, true);
-
-        //return Instal::sql(dirname(__FILE__). DS. 'base'. DS. 'db.sql', PREFIXO, $dados['prefixo']);
-
+        return $r;
     }
 
 

@@ -1,6 +1,6 @@
 <?php
 
-class terminal{
+class Terminal{
 
 	public static function start($cmd){
 		

@@ -1,7 +1,7 @@
 <?php return array(
-    'basetype'  => '',
-    'hostName'  => '',
-    'userName'  => '',
-    'password'  => '',
-    'tableName' => ''
+    'basetype' => '',
+    'hostName' => '',
+    'userName' => '',
+    'password' => '',
+    'tableName' => '',
 );

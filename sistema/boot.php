@@ -41,7 +41,7 @@ if(!file_exists(($f = BASE_PATH. DS. 'etc'. DS. 'confg.ll')))
 
 
 /** Instacia as configurações definidas no arquivo confg */
-else $_ll = array_merge($_ll, (require $f));
+else $_ll = array_merge($_ll, (Confgs::getFile($f)));
 
 
 /** starta todas os difines configurados */
@@ -88,7 +88,7 @@ if($_ll['terminal']){
 	/** Se existri um comando */
 	if(!empty($_GET)){
 		/** Executa o terminal */
-		terminal::start(((isset($_GET['cmd']))? $_GET['cmd']: $_GET)); die();
+		Terminal::start(((isset($_GET['cmd']))? $_GET['cmd']: $_GET)); die();
 	
 	/** se nao existir um comando */
 	}else{
@@ -220,7 +220,7 @@ if(!$ll_segok){
 
 }catch(Exception $ex){
 	if($_ll['terminal'])
-		terminal::error($ex->getMessage());
+		Terminal::error($ex->getMessage());
 	
 	$_ll['operation_type'] = 'opt';
 	$_ll['operation_load'] = 'msg';
@@ -241,7 +241,7 @@ $_ll[$_ll['operation_type']]['pagina'] =
 
 
 if($_ll['terminal']){
-	terminal::execute();
+	Terminal::execute();
 	die();
 }
 

@@ -5,7 +5,7 @@
  * @author Rodrigo
  */
 
-class db {
+class DB {
     
     const 
     PDO = 'PDO',
