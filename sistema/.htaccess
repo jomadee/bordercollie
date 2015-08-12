@@ -10,4 +10,4 @@ RewriteRule ^$ boot.php [NC]
 
 #se nao for dos tipos de arquivos a baixo joga no index.php
 RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteRule !\.(js|ico|txt|gif|jpg|png|css|pdf|htaccess|svg|otf|eot|ttf|woff|woff2)$ boot.php [NC]
+RewriteRule !\.(js|ico|txt|gif|jpg|png|css|htaccess|html|htm|php|swf|pdf|svg|otf|eot|ttf|woff|woff2)$ boot.php [NC]
