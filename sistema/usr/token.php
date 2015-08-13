@@ -3,7 +3,7 @@
 /**
  * Gerencia a criação e validções de tokens.
  */
-class Token{
+final class Token{
 	
 	/**
 	 * Retorna um tokem.

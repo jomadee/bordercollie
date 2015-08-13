@@ -71,5 +71,9 @@ class SU extends DB{
 		$_ll['user'] = &$_SESSION['ll']['user'];
 		return TRUE;
 	}
+
+	public static function get(){
+		return ((isset($_ll['user']['grupo']) && $_ll['user']['grupo'] == 'dev')? true: false);
+	}
 	
 }

@@ -181,14 +181,9 @@ if(in_array($_ll['operation_type'], $_ll['operation_types']) && $_ll['operation_
 
 //	
 /** Verifica a existemcia do arquivo de emtrada da requisição */
-if(!file_exists(($r = BASE_PATH. '/'. $_ll['operation_type']. '/'. $_ll['operation_load']. '/'. ($_ll['operation_mode']). (!$_ll['terminal']? '.php': '.tmn')))){
+if(!file_exists(($r = BASE_PATH. '/'. $_ll['operation_type']. '/'. $_ll['operation_load']. '/'. ($_ll['operation_mode']). '.php')))
 	/** se nao existir mostra um erro */
 	throw new Exception('O arquivo de requisição não existe: '. $r);
-    //$_ll['operation_type'] = 'opt';
-    //$_ll['operation_load'] = 'msg';
-    //$_ll['operation_mode'] = 'start';
-    //$msg_mensage = 'nao_existe';
-} 
 
 
 /****************	teste de segurança	*/
@@ -208,9 +203,10 @@ if(lliure::tsecuryt() == false){ // se não for desenvolverdor
 } else {
 	$ll_segok = true;
 }
-
 */
+
 $ll_segok = true;
+
 
 /** se não for seguro */
 if(!$ll_segok){
@@ -227,8 +223,9 @@ if(!$ll_segok){
 	$_ll['operation_mode'] = 'start';
 	$msg_mensage = $ex->getMessage();
 }
-  
-/** Define os dados do APP da requisição */
+
+
+/* Define os dados do APP da requisição */
 $_ll[$_ll['operation_type']]['home'] = $_ll['operation_load'];
 $_ll[$_ll['operation_type']]['onserver'] = 'onserver/'.$_ll[$_ll['operation_type']]['home'];
 $_ll[$_ll['operation_type']]['onclient'] = 'onclient/'.$_ll[$_ll['operation_type']]['home'];
@@ -236,19 +233,8 @@ $_ll[$_ll['operation_type']]['pasta'] = $_ll['operation_type']. '/'. $_ll['opera
 $_ll[$_ll['operation_type']]['pagina'] = 
 	$_ll[$_ll['operation_type']]['pasta'].
 	(($_ll['enter_mode'] == 'nli')? 'nli/': '').
-	($_ll['operation_mode']).
-	(!$_ll['terminal']? '.php': '.tmn');
+	($_ll['operation_mode']). ('.php');
 
-
-if($_ll['terminal']){
-	Terminal::execute();
-	die();
-}
-
-///** caos a requisição nao seja default, ou seja, onclient ou onserver */
-//if($_ll['operation_mode'] !== 'default'){
-//	/** carrega a requisição e para o sistema */
-//	require_once($_ll[$_ll['operation_type']]['pagina']);die();}
 
 /** carrega a requisicao do usuario */
 require_once $_ll[$_ll['operation_type']]['pagina'];

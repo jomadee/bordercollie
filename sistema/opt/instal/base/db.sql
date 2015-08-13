@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `ll_lliure_su` (
 -- Copiando dados para a tabela lliure_border_collie.ll_lliure_su: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `ll_lliure_su` DISABLE KEYS */;
 INSERT INTO `ll_lliure_su` (`id`, `login`, `senha`, `nome`, `email`, `foto`, `grupo`, `themer`) VALUES
-	(1, 'dev', 'aa7da2ab1f526a118c22fbff233ace2d', '', '', NULL, 'user', 'default');
+	(1, 'dev', 'aa7da2ab1f526a118c22fbff233ace2d', '', '', NULL, 'dev', 'default');
 /*!40000 ALTER TABLE `ll_lliure_su` ENABLE KEYS */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IF(@OLD_FOREIGN_KEY_CHECKS IS NULL, 1, @OLD_FOREIGN_KEY_CHECKS) */;
